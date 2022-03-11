@@ -1,0 +1,24 @@
+{% extends 'ubsshop/Main.html' %}
+{% load static %}
+{% block content %}
+     <h3>Store</h3>
+     <div class = "row">
+     {% if products %}
+     {% for product in products %}
+     <div class="col-lg-4">
+        <img class="thumbnail" src="{% if product.image %}{{product.image.url}}{% else %}https://www.freeiconspng.com/uploads/no-image-icon-6.png{% endif %}">
+        <div class="box-element product">
+            <h6><strong>{{product.name}}</strong></h6>
+            <hr>
+            <button data-product={{product.id}} data-action="add" class="btn btn-outline-secondary add-btn update-cart">Add to Cart</button>
+            <a class="btn btn-outline-success" href="{% url 'view' pk=product.id %}">View</a>
+            <h4 style="display: inline-block; float: right"><strong>{{product.price}}$</strong></h4>
+    
+        </div>
+    </div>
+    {% endfor %}
+     {% else %}
+          <p>No Products </p>
+     {% endif %}
+</div>
+{% endblock content %}
